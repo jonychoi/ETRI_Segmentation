@@ -8,7 +8,7 @@ class DramDataSet(data.Dataset):
     def __init__(
         self,
         data_root,
-        movement,
+        movement = "dram",
         max_iters=None,
         num_classes=12,
         split="train",

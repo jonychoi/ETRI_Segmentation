@@ -66,12 +66,14 @@ def run(args):
                 A.HorizontalFlip(p=0.5),
                 A.RandomResizedCrop(net_h, net_w, ratio=(0.5, 2.0)),
             ]),
+            root = args.source_root
         )
         tgt_test_dataset = DramDataSet(
             split = "test", 
             transform=A.Compose([
                 A.Resize(net_w, net_h),
-            ])
+            ]),
+            root = args.source_root
         )
 
         tgt_train_dataloader = data.DataLoader(tgt_train_dataset, batch_size=args.batch_size, shuffle=True)
@@ -84,14 +86,16 @@ def run(args):
                 A.LongestMaxSize(resize_size),
                 A.HorizontalFlip(p=0.5),
                 A.RandomResizedCrop(net_h, net_w, ratio=(0.5, 2.0)),
-            ])
+            ]),
+            data_root = args.target_root
         )
         valid_dataset = ETRI(
             split = "val", 
             img_paths = True,
             transform=A.Compose([
                 A.Resize(net_w, net_h),
-            ])
+            ]),
+            data_root = args.target_root
         )
 
         src_train_dataloader = data.DataLoader(src_train_dataset, batch_size=args.batch_size, shuffle=True)
@@ -134,7 +138,6 @@ def run(args):
         
         epoch = initial_epoch + epoch 
 
-        # model = nn.DataParallel(model)
         model.train()
 
         for batch_idx, (batch_s, batch_t) in enumerate(tqdm(zip(src_train_dataloader, tgt_train_dataloader), total = total, desc=f"Train Epoch {epoch + 1}" )):
@@ -221,7 +224,7 @@ def run(args):
                 randaug_loss.backward()
                 losses['target loss : randaug'] = randaug_loss.cpu().item()
             
-            '''consistency regularization with DRAM : style aug '''  
+            '''consistency regularization with DRAM : style aug '''
             if args.lam_styleaug > 0 :
 
                 s_weight = random.uniform(0.5, 1.0)
@@ -350,12 +353,12 @@ if __name__ == "__main__":
     parser.add_argument("--backbone", type=str, default="dpt-hybrid", help="model backbone")
     parser.add_argument("--save_path", type=str, default=None, help="train model saving path")
     parser.add_argument("--weights", default=None, help="path to the trained weights of model")
-    parser.add_argument("--model_name", default="SegmentoDPT-6", help="model name")
+    parser.add_argument("--model_name", default="etriDPT-6", help="model name")
     parser.add_argument("--top_k", type=int, default = 6, help="Number of classes")
 
     # train configuration
     parser.add_argument("--batch_size", type=int, default=4, help="batch size")
-    parser.add_argument("--experiment_name", type=str, default="Segmento", help="experiment name")
+    parser.add_argument("--experiment_name", type=str, default="etri", help="experiment name")
     parser.add_argument("--ignore_index", type=int, default=-1, help="ignore_index")
 
     # optimizer
@@ -371,8 +374,11 @@ if __name__ == "__main__":
     parser.add_argument("--ema_decay", type=float, default=0.999, help="ema decay")
 
     # dataset
-    parser.add_argument("--source_dataset", type=str, default='artmento', help="source dataset")
+    parser.add_argument("--source_dataset", type=str, default='etri', help="source dataset")
+    parser.add_argument("--source_root", type=str, default="/media/dataset2/etri", help="source root")
+
     parser.add_argument("--target_dataset", type=str, default='DRAM', help="target dataset")
+    parser.add_argument("--target_root", type=str, default='/media/dataset2/DRAM_processed', help="target root")
     
     # losses
     parser.add_argument("--pseudolabel_threshold", type=float, default=0.0, help="pseudolabel_threshold")

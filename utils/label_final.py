@@ -129,7 +129,7 @@ def configuration(model, args):
         print("3. Number of Model output nodes: ", num_classes + 1)
         print("4. Background ignore index:", background_ignore_index)
         print("5. Merged:", merged)
-        return model, merged, args.model_name, top_k, num_classes, background_ignore_index
+        return model, merged, top_k, num_classes, background_ignore_index
     else:
         top_k = args.top_k
         background_ignore_index = top_k
