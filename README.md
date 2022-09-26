@@ -9,14 +9,14 @@ This repository is for private usage. 2022 Computer Vision Lab @ Korea Universit
 ```
 etri
 ├── backbone: DPT-Hybrid Configuration customized for ETRI data.
-│   └── dpt: dpt backbone scripts
-├── datasets: DRAM / ETRI datasets configurations
+│   └── dpt:: dpt backbone scripts
+├── datasets:: DRAM / ETRI datasets configurations
 │   └── dram
-├── perturbations: photometric / geometric augmentations for consistency learning
-├── style_transfer: style transfer network
-├── utils: label mapper, evaluator, ema model, pallete, arguments parsers, tensorboard logger etc.
+├── perturbations:: photometric / geometric augmentations for consistency learning
+├── style_transfer:: style transfer network
+├── utils:: label mapper, evaluator, ema model, pallete, arguments parsers, tensorboard logger etc.
 ├──.gitignore
-├── main.py
+├── main.py:: Semi Supervised Consistency Learning
 ├── main.sh
 ├── README.md
 ```
@@ -47,8 +47,6 @@ bash main.sh --pseudolabel_threshold 0.8
 ```
 
 
-
-
 ### 3. Additional Weights and Dataset Configuration
 
 1. ETRI Datasets
@@ -56,4 +54,7 @@ bash main.sh --pseudolabel_threshold 0.8
 2. DRAM Datasets
 
 
-### 4. Model Saving Scheme      
+### 4. Model and Log Saving Scheme
+
+#### 4-1. Model Best weights saving
+
