@@ -24,26 +24,8 @@ def style_transfer(vgg, decoder, content, style, alpha=1.0,
     feat = feat * alpha + content_f * (1 - alpha)
     return decoder(feat)
 
-
-# # content 한장이랑 style 여러장 들어올듯
-def mixed_style_transfer(vgg, decoder, content, style, alpha = 1.0, interpolation_weights = None):
-    assert (0.0 <= alpha <= 1.0)
-    content_f = vgg(content)
-    style_f = vgg(style)
-    styles_f = torch.mean(style_f, dim = 0) # style feature 의 평균 
-    styles_f = styles_f.unsqueeze(0) # 
-    # print(styles_f.size())
-    # print(content_f.size())
-    # import pdb; pdb.set_trace()
-    feat = adaptive_instance_normalization(content_f, styles_f)
-    feat = feat * alpha + content_f * (1 - alpha)
-    return decoder(feat)
-
-
-vgg_path = "/home/cvlab06/project/segmento_hj2/segmento_pascal/framework/style_transfer/vgg_normalised.pth"
-decoder_path = "/home/cvlab06/project/segmento_hj2/segmento_pascal/framework/style_transfer/decoder.pth"
-
-# no interpolation.. pascal - dram 1:1 로
+vgg_path = "/home/cvlab06/project/etri/framework/style_transfer/vgg_normalised.pth"
+decoder_path = "/home/cvlab06/project/etri/framework/style_transfer/decoder.pth"
 
 def style_transferred(args, contents, styles, alpha):
     decoder = dec()
