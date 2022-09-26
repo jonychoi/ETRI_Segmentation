@@ -37,7 +37,7 @@ bash main.sh
 
 #### 2-3. Tunning the Configurations
 
-> 1. Changing Configurations at the main.sh
+- Changing Configurations at the main.sh
 
 ```
 ...
@@ -51,7 +51,7 @@ bash main.sh
 
 or you can just
 
-> 2. Execute bash file with configurations.
+- Execute bash file with configurations.
 
 E.g) if you want to execute main.py with the pseudolabel-threshold of 0.8,
 ```
