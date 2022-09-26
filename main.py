@@ -22,12 +22,8 @@ from utils.eval import Eval
 from utils.poly import poly_lr_scheduler
 from utils.save_checkpoints import save_checkpoints
 from utils.get_model import get_model
-from utils.pallete import get_mask_pallete
 
 from perturbations.augmentations import augment, get_augmentation, get_geo_augmentation
-from perturbations.fourier import fourier_mix
-from perturbations.cutmix import cutmix_combine
-from perturbations.classmix import classmix_combine
 import perturbations.randaug as randaug
 
 from style_transfer.styletf import style_transferred
