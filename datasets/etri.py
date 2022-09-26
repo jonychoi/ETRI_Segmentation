@@ -11,14 +11,14 @@ import albumentations as A
 class ETRI(Dataset):
     def __init__(
         self, 
-        root_dir = "/media/dataset2/etri",
+        root = "/media/dataset2/etri",
         split = "train",
         transform = None,
         img_paths = False,
         trans_img = True,
         trans_label = True,
     ):
-        self.root = root_dir
+        self.root = root
         self.transform = transform
         self.paintings = []
         self.split = split

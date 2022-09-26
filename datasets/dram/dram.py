@@ -7,7 +7,7 @@ from PIL import Image
 class DramDataSet(data.Dataset):
     def __init__(
         self,
-        data_root,
+        root,
         movement = "dram",
         max_iters=None,
         num_classes=12,
@@ -18,11 +18,11 @@ class DramDataSet(data.Dataset):
     ):
         self.split = split
         self.NUM_CLASS = num_classes
-        self.data_root = data_root
+        self.data_root = root
         self.data_list = []
         self.movement = movement
 
-        data_list_path = os.path.join(data_root, split, movement + ".txt")
+        data_list_path = os.path.join(self.data_root, split, movement + ".txt")
         with open(data_list_path, "r") as handle:
             content = handle.read().splitlines()
 

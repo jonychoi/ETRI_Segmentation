@@ -11,10 +11,10 @@ def etriDPT(weights, num_classes, args):
         backbone = "vitb_rn50_384",
     )
 
-    return load_model(model, weights)
+    return load_model(model, weights, args)
 
 
-def load_model(model, weights):
+def load_model(model, weights, args):
 
     if weights == "":
         dpt_hybrid_ade20k = args.pretrained

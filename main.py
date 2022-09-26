@@ -51,7 +51,7 @@ def run(args):
 
     model, model_name, top_k, num_classes, background_ignore_index = configuration(model, args)
     
-    writer = SummaryWriter('/tensorboard/' + args.experiment_name + "/" + args.model_name)
+    writer = SummaryWriter('tensorboard/' + args.experiment_name + "/" + args.model_name)
 
     IMG_MEAN = [0.485, 0.456, 0.406]
     IMG_MEAN = torch.Tensor(IMG_MEAN).reshape(1,3,1,1)
@@ -66,40 +66,40 @@ def run(args):
                 A.HorizontalFlip(p=0.5),
                 A.RandomResizedCrop(net_h, net_w, ratio=(0.5, 2.0)),
             ]),
-            root = args.source_root
+            root = args.target_root
         )
         tgt_test_dataset = DramDataSet(
             split = "test", 
             transform=A.Compose([
                 A.Resize(net_w, net_h),
             ]),
-            root = args.source_root
+            root = args.target_root
         )
 
         tgt_train_dataloader = data.DataLoader(tgt_train_dataset, batch_size=args.batch_size, shuffle=True)
         tgt_test_dataloader = data.DataLoader(tgt_test_dataset, batch_size = args.batch_size)
 
     if args.source_dataset == "etri":
-        train_dataset = ETRI(
+        src_train_dataset = ETRI(
             split = "train", 
             transform=A.Compose([
                 A.LongestMaxSize(resize_size),
                 A.HorizontalFlip(p=0.5),
                 A.RandomResizedCrop(net_h, net_w, ratio=(0.5, 2.0)),
             ]),
-            data_root = args.target_root
+            root = args.source_root
         )
-        valid_dataset = ETRI(
+        src_valid_dataset = ETRI(
             split = "val", 
             img_paths = True,
             transform=A.Compose([
                 A.Resize(net_w, net_h),
             ]),
-            data_root = args.target_root
+            root = args.source_root
         )
 
         src_train_dataloader = data.DataLoader(src_train_dataset, batch_size=args.batch_size, shuffle=True)
-        src_valid_dataloader = data.DataLoader(src_val_dataset, batch_size = args.batch_size)
+        src_valid_dataloader = data.DataLoader(src_valid_dataset, batch_size = args.batch_size)
 
     # exp name
     experiment_name = args.experiment_name 

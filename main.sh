@@ -17,7 +17,7 @@ CUDA_VISIBLE_DEVICES=2 python /home/cvlab02/project/etri/main.py \
 --source_dataset 'etri' \
 --target_dataset 'DRAM' \
 --source_root '/media/dataset2/etri' \
---target_root '/media/dataset2/DRAM_processed' \
+--target_root '/media/dataset2/DRAM_processed/' \
 --pretrained "/media/dataset2/dpt_hybrid-ade20k-53898607.pt" \
 --lam_style 1.0 \
 --pseudolabel_threshold 0.8 \
