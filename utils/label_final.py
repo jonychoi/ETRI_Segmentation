@@ -128,10 +128,7 @@ def configuration(model, args):
         print("2. Number of classes:", top_k)
         print("3. Number of Model output nodes: ", num_classes + 1)
         print("4. Background ignore index:", background_ignore_index)
-        print("5. AUG LOSS:", args.lam_aug)
-        print("6. CUTMIX LOSS:", args.lam_cutmix)
-        print("7. FOURIER LOSS:", args.lam_fourier)
-        print("8. Merged:", merged)
+        print("5. Merged:", merged)
         return model, merged, args.model_name, top_k, num_classes, background_ignore_index
     else:
         top_k = args.top_k
@@ -144,9 +141,6 @@ def configuration(model, args):
         print("2. Number of classes:", top_k)
         print("3. Number of Model output nodes: ", num_classes + 1)
         print("4. Background ignore index:", background_ignore_index)
-        print("5. AUG LOSS:", args.lam_aug)
-        print("6. CUTMIX LOSS:", args.lam_cutmix)
-        print("7. FOURIER LOSS:", args.lam_fourier)
         return model, args.model_name, top_k, num_classes, background_ignore_index
 
 def bgmapper(uniques, labels, bg, main_labels):

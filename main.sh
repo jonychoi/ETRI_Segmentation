@@ -1,12 +1,13 @@
 CUDA_VISIBLE_DEVICES=2 python /home/cvlab02/project/etri/main.py \
---save_path "/media/dataset2/etri_result/etri_merge_top6/" \
+--save_path "/media/dataset2/etri_result/etri_semi/" \
 --weights "" \
 --backbone "dpt-hybrid" \
---model_name "etri_merge_top6" \
+--model_name "etri_semi" \
 --top_k 6 \
 --batch_size 4 \
 --ignore_index -1 \
---experiment_name "etri_merge_top6" \
+--experiment_name "etri_semi" \
+--merged "etri_merge_top6" \
 --optimizer 'SGD' \
 --init_lr 1e-4 \
 --lr_max_iter 40000 \

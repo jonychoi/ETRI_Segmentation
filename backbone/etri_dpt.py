@@ -1,6 +1,6 @@
 import torch
 import torch.nn as nn
-from etri.backbone.dpt.models import DPTSegmentationModel
+from backbone.dpt.models import DPTSegmentationModel
 
 def etriDPT(weights, num_classes):
     
@@ -17,7 +17,7 @@ def etriDPT(weights, num_classes):
 def load_model(model, weights):
 
     if weights == "":
-        dpt_hybrid_ade20k = "/media/dataset2/etri/dpt_hybrid-ade20k-53898607.pt"
+        dpt_hybrid_ade20k = "/media/dataset2/dpt_hybrid-ade20k-53898607.pt"
         ade20k = torch.load(dpt_hybrid_ade20k)
 
         model.initialize_weights()

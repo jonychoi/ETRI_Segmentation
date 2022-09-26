@@ -29,7 +29,7 @@ import perturbations.randaug as randaug
 from style_transfer.styletf import style_transferred
 
 from datasets.etri import ETRI 
-from datasets.Dram import DramDataSet
+from datasets.dram.dram import DramDataSet
 
 def run(args):
 
@@ -130,7 +130,7 @@ def run(args):
 
     print(len(src_train_dataloader), len(tgt_train_dataloader))
     
-    for epoch_idx, epoch in enumerate(tqdm(range(initial_epoch + 100))):    # 100번만 돌까?
+    for epoch_idx, epoch in enumerate(tqdm(range(initial_epoch + 100))):
         
         epoch = initial_epoch + epoch 
 
@@ -149,9 +149,9 @@ def run(args):
             """ sup loss of PASCAL """
             x_s, y_s = batch_s
             x_t, _ = batch_t
-            x_t_c = x_t.to(device)      # x_t_c : x_t for consistency loss
+            x_t_c = x_t.to(device)
             
-            sup_seg_maps = label_mapper(y_s.numpy(), top_k, "etri_merge_top6")
+            sup_seg_maps = label_mapper(y_s.numpy(), top_k, args.merged)
             sup_seg_map = torch.LongTensor(sup_seg_maps).to(device)
 
             x_s_sup = x_s.to(device)
@@ -305,7 +305,7 @@ def validate(
             semantic_segmentation = model(x)
             semantic_segmentation = torch.argmax(semantic_segmentation, dim = 1).cpu().numpy()
 
-            segmentation_maps = label_mapper(y.cpu().numpy(), args.top_k, "etri_merge_top6").astype(np.int64)
+            segmentation_maps = label_mapper(y.cpu().numpy(), args.top_k, args.merged).astype(np.int64)
 
             evaluator.add_batch(semantic_segmentation, segmentation_maps)
 
@@ -343,8 +343,6 @@ def validate(
     return best_epoch, best_MIou
 
 
-
-
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
 
@@ -375,7 +373,6 @@ if __name__ == "__main__":
     # dataset
     parser.add_argument("--source_dataset", type=str, default='artmento', help="source dataset")
     parser.add_argument("--target_dataset", type=str, default='DRAM', help="target dataset")
-
     
     # losses
     parser.add_argument("--pseudolabel_threshold", type=float, default=0.0, help="pseudolabel_threshold")
@@ -383,6 +380,9 @@ if __name__ == "__main__":
     parser.add_argument("--lam_randaug", type=float, default = 0.0, help = "lam rand aug")
     parser.add_argument("--lam_style", type = float, default = 0.0, help = "lam style transfer")
     parser.add_argument("--lam_styleaug", type = float, default = 0.0, help = "lam style augmentation")
+
+    # label merge
+    parser.add_argument("--merged", type = str, default = "", help = "label merge category")
     args = parser.parse_args()
 
     # style_transfer 
