@@ -376,6 +376,9 @@ if __name__ == "__main__":
 
     parser.add_argument("--target_dataset", type=str, default='DRAM', help="target dataset")
     parser.add_argument("--target_root", type=str, default='/media/dataset2/DRAM_processed', help="target root")
+
+    # pretrained
+    parser.add_argument("--pretrained", type=str, default='', help="pretrained root")
     
     # losses
     parser.add_argument("--pseudolabel_threshold", type=float, default=0.0, help="pseudolabel_threshold")
