@@ -29,7 +29,7 @@ import perturbations.randaug as randaug
 from style_transfer.styletf import style_transferred
 
 from datasets.etri import ETRI 
-from datasets.dram.dram import DramDataSet
+from datasets.Dram import DramDataSet
 
 def run(args):
 

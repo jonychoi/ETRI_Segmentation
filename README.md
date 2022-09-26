@@ -89,7 +89,6 @@ To start from the ade20k pretrained weights of DPT-Hybrid, you should set the di
 --pretrained "/media/dataset2/dpt_hybrid-ade20k-53898607.pt" \
 ```
 
-
 ### 4. Model and Log Saving Scheme
 
 #### 4-1. Weights saving
@@ -117,3 +116,15 @@ To execute the tensorboard, write the command at the terminal as following.
 ```
 tensorboard dev upload --logdir {TENSORBOARD LOG DIR} --name {ANY NAME}
 ```
+
+#### 5. Default Classes
+
+1. Person
+2. Sky+Cloud
+3. Grass + Ground-others
+4. Wall-others
+5. Tree
+6. Water-others
+
+
+MIoUs will be updated soon.
