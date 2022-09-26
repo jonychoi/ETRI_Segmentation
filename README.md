@@ -37,9 +37,21 @@ bash main.sh
 
 #### 2-3. Tunning the Configurations
 
-> 1. At the main.sh bash file, change the configurations
+> 1. Changing Configurations at the main.sh
 
-> 2. Or you can just execute bash file with configurations.
+```
+...
+--target_dataset 'DRAM' \
+--lam_style 1.0 \
+--pseudolabel_threshold 0.8 \
+--lam_randaug 0.8 \
+--lam_styleaug 0.8 \
+...
+```
+
+or you can just
+
+> 2. Execute bash file with configurations.
 
 E.g) if you want to execute main.py with the pseudolabel-threshold of 0.8,
 ```
