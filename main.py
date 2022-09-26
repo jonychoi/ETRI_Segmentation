@@ -1,5 +1,5 @@
 import os, sys, glob, cv2, argparse
-sys.path.append("/home/cvlab06/project/etri")
+sys.path.append("/home/cvlab02/project/etri")
 from tqdm import tqdm
 import numpy as np
 import random
@@ -78,7 +78,7 @@ def run(args):
         tgt_test_dataloader = data.DataLoader(tgt_test_dataset, batch_size = args.batch_size)
 
     if args.source_dataset == "etri":
-        train_dataset = ArtMento(
+        train_dataset = ETRI(
             split = "train", 
             transform=A.Compose([
                 A.LongestMaxSize(resize_size),
@@ -86,7 +86,7 @@ def run(args):
                 A.RandomResizedCrop(net_h, net_w, ratio=(0.5, 2.0)),
             ])
         )
-        valid_dataset = ArtMento(
+        valid_dataset = ETRI(
             split = "val", 
             img_paths = True,
             transform=A.Compose([
@@ -125,7 +125,6 @@ def run(args):
     initial_epoch = target_best_epoch = source_best_epoch = int(args.weights.split("::")[1]) if args.weights != "" else 0
 
     source_best_MIou = 0
-    target_best_MIou = 0
 
     total = min(len(src_train_dataloader), len(tgt_train_dataloader))
 
@@ -213,9 +212,8 @@ def run(args):
                 )      
 
                 x_strongauged = x_strongauged.to(device).float()
-
-
                 y_strongauged = y_strongauged.to(device)
+                
                 augmented_pred = model(x_strongauged)
 
                 randaug_loss = semi_cross_entropy(augmented_pred, y_strongauged) * args.lam_randaug

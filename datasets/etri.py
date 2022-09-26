@@ -11,7 +11,7 @@ import albumentations as A
 class ETRI(Dataset):
     def __init__(
         self, 
-        root_dir = "/home/cvlab06/project/segmento/datasets/artmento",
+        root_dir = "/media/dataset2/etri",
         split = "train",
         transform = None,
         img_paths = False,

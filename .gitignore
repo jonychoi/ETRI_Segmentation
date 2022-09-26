@@ -1,5 +1,5 @@
-/home/cvlab06/project/etri/framework/style_transfer/decoder.pth
-/home/cvlab06/project/etri/framework/style_transfer/vgg_normalised.pth
+/home/cvlab06/project/etri/style_transfer/decoder.pth
+/home/cvlab06/project/etri/style_transfer/vgg_normalised.pth
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

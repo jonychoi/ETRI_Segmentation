@@ -1,0 +1,21 @@
+CUDA_VISIBLE_DEVICES=2 python /home/cvlab02/project/etri/main.py \
+--save_path "/media/dataset2/etri_result/etri_merge_top6/" \
+--weights "" \
+--backbone "dpt-hybrid" \
+--model_name "etri_merge_top6" \
+--top_k 6 \
+--batch_size 4 \
+--ignore_index -1 \
+--experiment_name "etri_merge_top6" \
+--optimizer 'SGD' \
+--init_lr 1e-4 \
+--lr_max_iter 40000 \
+--poly_power 0.9 \
+--weight_decay 0.0001 \
+--ema_decay 0.999 \
+--source_dataset 'etri' \
+--target_dataset 'DRAM' \
+--lam_style 1.0 \
+--pseudolabel_threshold 0.8 \
+--lam_randaug 0.8 \
+--lam_styleaug 0.8 \
