@@ -61,7 +61,7 @@ bash main.sh --pseudolabel_threshold 0.8
 
 ### 3. Additional Weights and Dataset Configuration
 
-1. Datasets
+3-1. Datasets
 To set the root directory of the ETRI datasets,
 
 - Change the bash file with configurations
@@ -78,6 +78,17 @@ or you can just
 ```
 bash main.sh --source_root '/media/dataset2/etri'
 ```
+
+3-2. Pretrained Weights
+
+To start from the ade20k pretrained weights of DPT-Hybrid, you should set the directory of the weights.
+
+- Change the bash file with configurations
+
+```
+--pretrained "/media/dataset2/dpt_hybrid-ade20k-53898607.pt" \
+```
+
 
 ### 4. Model and Log Saving Scheme
 
