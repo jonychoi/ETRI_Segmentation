@@ -381,10 +381,6 @@ if __name__ == "__main__":
     
     # losses
     parser.add_argument("--pseudolabel_threshold", type=float, default=0.0, help="pseudolabel_threshold")
-    # parser.add_argument("--lam_aug", type=float, default=0.0, help="lam aug")
-    # parser.add_argument("--lam_fourier", type=float, default=0.0, help="lam fourier")
-    # parser.add_argument("--lam_cutmix", type=float, default=0.0, help="lam cutmix")
-    # parser.add_argument("--lam_classmix", type=float, default = 0.0, help = "lam classmix")
     parser.add_argument("--lam_sup", type = float, default = 1.0)
     parser.add_argument("--lam_randaug", type=float, default = 0.0, help = "lam rand aug")
     parser.add_argument("--lam_style", type = float, default = 0.0, help = "lam style transfer")
