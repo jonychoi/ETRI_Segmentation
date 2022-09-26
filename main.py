@@ -50,8 +50,8 @@ def run(args):
     ema = EMA(model, args.ema_decay)
 
     model, model_name, top_k, num_classes, background_ignore_index = configuration(model, args)
-
-    writer = SummaryWriter(args.experiment_name + "/" + args.model_name) 
+    
+    writer = SummaryWriter('/tensorboard/' + args.experiment_name + "/" + args.model_name)
 
     IMG_MEAN = [0.485, 0.456, 0.406]
     IMG_MEAN = torch.Tensor(IMG_MEAN).reshape(1,3,1,1)
@@ -119,9 +119,6 @@ def run(args):
     
     # makedirs for checkpoints & pics
     save_dir = args.save_path+"{}/{}/source/".format(experiment_name, "top{}".format(top_k))
-    os.makedirs(save_dir, exist_ok=True)
-
-    save_dir = args.save_path+"{}/{}/target/".format(experiment_name, "top{}".format(top_k))
     os.makedirs(save_dir, exist_ok=True)
 
     save_dir = args.save_path+"{}/{}/".format(experiment_name, "top{}".format(top_k))

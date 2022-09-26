@@ -51,7 +51,7 @@ bash main.sh
 
 or you can just
 
-- Execute bash file with configurations.
+- Execute bash file with configurations
 
 E.g) if you want to execute main.py with the pseudolabel-threshold of 0.8,
 ```
@@ -61,12 +61,48 @@ bash main.sh --pseudolabel_threshold 0.8
 
 ### 3. Additional Weights and Dataset Configuration
 
-1. ETRI Datasets
+1. Datasets
+To set the root directory of the ETRI datasets,
 
-2. DRAM Datasets
+- Change the bash file with configurations
 
+```
+--source_root '/media/dataset2/etri' \
+--target_root '/media/dataset2/DRAM_processed' \
+```
+
+or you can just
+
+- Execute bash file with configuration
+
+```
+bash main.sh --source_root '/media/dataset2/etri'
+```
 
 ### 4. Model and Log Saving Scheme
 
-#### 4-1. Model Best weights saving
+#### 4-1. Weights saving
+Set args.save_dir at the main.sh
+```
+--save_dir "/media/dataset2/etri_result/etri_semi/"
+```
 
+Best model will be saved as
+
+```
+save_dir
+├── experiment_name
+│   └── source
+│       └── top_K
+│           └── epoch::{EPOCH}::iter::{ITERS}::model::dpt_hybrid::miou::{MIOU}.pth
+```
+
+#### 4-2. Tensorboard Logging
+Tensorboard logs are saved at
+```
+root/tensorboard/{EXPERIMENT_NAME}/{DATE}/
+```
+To execute the tensorboard, write the command at the terminal as following.
+```
+tensorboard dev upload --logdir {TENSORBOARD LOG DIR} --name {ANY NAME}
+```

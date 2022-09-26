@@ -8,6 +8,7 @@ def get_model(args):
         model = etriDPT(
             num_classes = args.top_k,
             weights=args.weights, 
+            args = args
         )
     else:
         raise NotImplementedError()
