@@ -4,7 +4,7 @@ This repository is for private usage. 2022 Computer Vision Lab @ Korea Universit
 
 ---
 
-### 1. Project Configuration
+### 0. Project Configuration
 
 ```
 etri
@@ -12,6 +12,9 @@ etri
 │   └── dpt:: dpt backbone scripts
 ├── datasets:: DRAM / ETRI datasets configurations
 │   └── dram
+├── dataset:: The path of datasets: DRAM / ETRI
+│   └── etri
+│   └── DRAM_preprocessed
 ├── perturbations:: photometric / geometric augmentations for consistency learning
 ├── style_transfer:: style transfer network
 ├── utils:: label mapper, evaluator, ema model, pallete, arguments parsers, tensorboard logger etc.
@@ -19,8 +22,19 @@ etri
 ├── main.py:: Semi Supervised Consistency Learning
 ├── main.sh
 ├── README.md
+├── ./dpt_hybrid-ade20k-53898607.pt : weight of pre-trained DPT on ADE20k.
 ```
 
+### 1. Download/set datasets & checkpoints
+First make directories to save checkpoints and datasets
+```
+mkdir ./checkpoints
+mkdir ./dataset
+```
+You can download DRAM dataset from this link: [DRAM download](https://faculty.runi.ac.il/arik/site/artseg/DRAM_processed.zip)
+You can daonload the DPT checkpoint and final checkpoint to test our framework from this link: [Checkpoint download](https://drive.google.com/drive/folders/1Ki7FCQGUOy_CNJzckpkZagLENrvAWlHV?usp=sharing)
+
+Please put the *ETRI/DRAM dataset and checkpoints to the following "0. Project Configuration."*
 
 ### 2. Code of Conduct
 All instructions are instructed at the root directory of the project.
@@ -41,17 +55,17 @@ So. We chose some classes to train/infer and merged ambiguous classes as below:
 5. Tree
 6. Water-others
 
-#### 2-1. Inference: Run bash file at the root (test.sh)
+#### 2-3. Inference: Run bash file at the root (test.sh)
 ```
 bash test.sh
 ```
 
-#### 2-2. Training: Run bash file at the root (main.sh)
+#### 2-4. Training: Run bash file at the root (main.sh)
 ```
 bash main.sh
 ```
 
-#### 2-3. Tunning the Configurations
+#### 2-5. Tunning the Configurations
 
 - Changing Configurations at the main.sh
 
