@@ -27,7 +27,8 @@ All instructions are instructed at the root directory of the project.
 
 #### 2-1. Activate the Conda Environment
 ```
-conda activate etri
+conda env create -f environment.yaml
+conda activate segmento
 ```
 
 #### 2-2. Fast Execute: Run bash file at the root (main.sh)
