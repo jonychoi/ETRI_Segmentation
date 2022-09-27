@@ -31,6 +31,16 @@ conda env create -f environment.yaml
 conda activate segmento
 ```
 
+#### 2-2. Default Classes
+We found that some class labelings are ambiguous and then, it made worse to check the performance of our framework.
+So. We chose some classes to train/infer and merged ambiguous classes as below:
+1. Person
+2. Sky+Cloud
+3. Grass + Ground-others
+4. Wall-others
+5. Tree
+6. Water-others
+
 #### 2-1. Inference: Run bash file at the root (test.sh)
 ```
 bash test.sh
@@ -122,15 +132,6 @@ To execute the tensorboard, write the command at the terminal as following.
 ```
 tensorboard dev upload --logdir {TENSORBOARD LOG DIR} --name {ANY NAME}
 ```
-
-#### 5. Default Classes
-
-1. Person
-2. Sky+Cloud
-3. Grass + Ground-others
-4. Wall-others
-5. Tree
-6. Water-others
 
 
 MIoUs will be updated soon.
