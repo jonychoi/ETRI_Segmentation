@@ -65,6 +65,12 @@ So. We chose some classes to train/infer and merged ambiguous classes as below:
 bash test.sh
 ```
 
+```
+We got the performance as below:
+Mean Intersection over Union: 0.694312
+CLASSES MIOU EVAL: [0.831 0.848 0.714 0.724 0.568 0.482 0.625]
+```
+
 #### 2-4. Training: Run bash file at the root (main.sh)
 ```
 bash main.sh
@@ -151,6 +157,3 @@ To execute the tensorboard, write the command at the terminal as following.
 ```
 tensorboard dev upload --logdir {TENSORBOARD LOG DIR} --name {ANY NAME}
 ```
-
-
-MIoUs will be updated soon.
