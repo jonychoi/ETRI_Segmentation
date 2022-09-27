@@ -87,7 +87,7 @@ class DPT(BaseModel):
 
         out = self.scratch.output_conv(path_1)
 
-        return out, acts, attns
+        return out
 
 
 class DPTDepthModel(DPT):

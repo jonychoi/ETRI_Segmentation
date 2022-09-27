@@ -40,8 +40,8 @@ def mixed_style_transfer(vgg, decoder, content, style, alpha = 1.0, interpolatio
     return decoder(feat)
 
 
-vgg_path = "/home/cvlab06/project/segmento_hj2/segmento_pascal/framework/style_transfer/vgg_normalised.pth"
-decoder_path = "/home/cvlab06/project/segmento_hj2/segmento_pascal/framework/style_transfer/decoder.pth"
+vgg_path = "/media/dataset2/vgg_normalised.pth"
+decoder_path = "/media/dataset2/decoder.pth"
 
 # no interpolation.. pascal - dram 1:1 로
 

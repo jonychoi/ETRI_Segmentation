@@ -1,4 +1,4 @@
-CUDA_VISIBLE_DEVICES=2 python /home/cvlab02/project/etri/main.py \
+CUDA_VISIBLE_DEVICES=1 python /home/cvlab02/project/etri/main.py \
 --save_path "/media/dataset2/etri_result/etri_semi/" \
 --weights "" \
 --backbone "dpt-hybrid" \

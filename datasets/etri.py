@@ -13,12 +13,15 @@ class ETRI(Dataset):
         self, 
         root = "/media/dataset2/etri",
         split = "train",
+        iters = None,
+        batch_size = 4,
         transform = None,
         img_paths = False,
         trans_img = True,
         trans_label = True,
     ):
         self.root = root
+        self.iters = iters
         self.transform = transform
         self.paintings = []
         self.split = split
@@ -31,6 +34,8 @@ class ETRI(Dataset):
             file_list = tuple(open(file_list, "r"))
             file_list = [id_.rstrip() for id_ in file_list]
             self.paintings = file_list
+            if self.iters is not None:
+                self.paintings = self.paintings * int(self.iters / (len(self.paintings) / batch_size))
         else:
             raise ValueError("Invalid split name: {}".format(self.split))
 

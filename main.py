@@ -66,14 +66,14 @@ def run(args):
                 A.HorizontalFlip(p=0.5),
                 A.RandomResizedCrop(net_h, net_w, ratio=(0.5, 2.0)),
             ]),
-            root = args.target_root
+            root_dir = args.target_root,
         )
         tgt_test_dataset = DramDataSet(
             split = "test", 
             transform=A.Compose([
                 A.Resize(net_w, net_h),
             ]),
-            root = args.target_root
+            root_dir = args.target_root,
         )
 
         tgt_train_dataloader = data.DataLoader(tgt_train_dataset, batch_size=args.batch_size, shuffle=True)
@@ -87,11 +87,13 @@ def run(args):
                 A.HorizontalFlip(p=0.5),
                 A.RandomResizedCrop(net_h, net_w, ratio=(0.5, 2.0)),
             ]),
-            root = args.source_root
+            batch_size = args.batch_size,
+            root = args.source_root,
+            iters = len(tgt_train_dataloader)
         )
         src_valid_dataset = ETRI(
             split = "val", 
-            img_paths = True,
+            img_paths = False,
             transform=A.Compose([
                 A.Resize(net_w, net_h),
             ]),
@@ -146,11 +148,11 @@ def run(args):
 
             losses = {}
             
-            """ sup loss of PASCAL """
+            """ sup loss of ETRI """
             x_s, y_s = batch_s
             x_t, _ = batch_t
             x_t_c = x_t.to(device)
-            
+
             sup_seg_maps = label_mapper(y_s.numpy(), top_k, args.merged)
             sup_seg_map = torch.LongTensor(sup_seg_maps).to(device)
 
@@ -162,7 +164,7 @@ def run(args):
             
             losses['Source Loss'] = supervised_loss.cpu().item()
 
-            """ style sup loss with PASCAL"""
+            """ style sup loss with ETRI"""
             if args.lam_style > 0:
                 x_s_st = x_s.to(device)
                 x_t_st = x_t.to(device)
@@ -178,9 +180,7 @@ def run(args):
 
                 losses['Style Loss'] = style_loss.cpu().item() 
 
-
             # pseudolabel for tgt(DRAM) consistency loss
-
             with torch.no_grad():
                 model.eval()
                 pred = model(x_t_c)
@@ -330,6 +330,8 @@ def validate(
         print("=====> Epoch {} - MIoU: {:3f} MPA: {:3f}".format(epoch, epoch_miou, epoch_mpa))
         print("=====> Saving a new best checkpoint...")
         print("=====> The best val MIoU is now {:.3f} from epoch {}".format(best_MIou, best_epoch))
+        save_checkpoints(save_dir, mode, model_name, ema, epoch, optimizer, best_MIou, epoch_mpa, classes_miou, epoch_fwiou, epoch_mp, epoch_pa)
+
 
     else:
         best_epoch = initial_epoch if best_epoch is None else best_epoch
@@ -338,7 +340,7 @@ def validate(
         print("=====> Epoch {} - MIoU: {:3f} MPA: {:3f}".format(epoch, epoch_miou, epoch_mpa))
         print("=====> The MIoU of val did not improve.")
         print("=====> The best val MIoU is still {:.3f} from epoch {:3f}".format(best_MIou, best_epoch))
-
+        
 
     return best_epoch, best_MIou
 
