@@ -110,12 +110,12 @@ def run(args):
                     ax3.imshow(semi)
                     ax3.axis("off")
 
-                    # filename = os.path.join(
-                    #     save_dir, os.path.splitext(os.path.basename(img_name))[0]
-                    # )
+                    filename = os.path.join(
+                        save_dir, os.path.splitext(os.path.basename(img_name))[0]
+                    )
 
-                    # plt.savefig(filename, dpi = 800)
-                    # plt.close()
+                    plt.savefig(filename, dpi = 800)
+                    plt.close()
 
             evaluator.add_batch(segmentation_maps, semi_semantic_segmentation)
 
