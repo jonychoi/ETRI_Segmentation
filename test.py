@@ -140,7 +140,7 @@ def run(args):
     print("---------------------------------------------------", end="\n\n")
 
     print("CLASSES MIOU EVAL---------------------------------------------------")
-    print("Pixmatch: {}".format(classes_miou))
+    print("Results of our framework: {}".format(classes_miou))
     print("---------------------------------------------------", end="\n\n")
 
             
