@@ -68,8 +68,8 @@ To set the root directory of the ETRI datasets,
 - Change the bash file with configurations
 
 ```
---source_root '/media/dataset2/etri' \
---target_root '/media/dataset2/DRAM_processed' \
+--source_root './dataset/etri' \
+--target_root './dataset/DRAM_processed' \
 ```
 
 or you can just
@@ -77,7 +77,7 @@ or you can just
 - Execute bash file with configuration
 
 ```
-bash main.sh --source_root '/media/dataset2/etri'
+bash main.sh --source_root './dataset/etri'
 ```
 
 3-2. Pretrained Weights
@@ -87,21 +87,21 @@ To start from the ade20k pretrained weights of DPT-Hybrid, you should set the di
 - Change the bash file with configurations
 
 ```
---pretrained "/media/dataset2/dpt_hybrid-ade20k-53898607.pt" \
+--pretrained "./dpt_hybrid-ade20k-53898607.pt" \
 ```
 
 ### 4. Model and Log Saving Scheme
 
 #### 4-1. Weights saving
-Set args.save_dir at the main.sh
+Set args.save_path at the main.sh
 ```
---save_dir "/media/dataset2/etri_result/etri_semi/"
+--save_path "./checkpoints"\
 ```
 
 Best model will be saved as
 
 ```
-save_dir
+save_path
 ├── experiment_name
 │   └── source
 │       └── top_K
