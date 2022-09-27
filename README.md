@@ -31,7 +31,12 @@ conda env create -f environment.yaml
 conda activate segmento
 ```
 
-#### 2-2. Fast Execute: Run bash file at the root (main.sh)
+#### 2-1. Inference: Run bash file at the root (test.sh)
+```
+bash test.sh
+```
+
+#### 2-2. Training: Run bash file at the root (main.sh)
 ```
 bash main.sh
 ```
