@@ -59,6 +59,7 @@ So. We chose some classes to train/infer and merged ambiguous classes as below:
 4. Wall-others
 5. Tree
 6. Water-others
++ bacground 포함 훈련
 
 #### 2-3. Inference: Run bash file at the root (test.sh)
 ```
