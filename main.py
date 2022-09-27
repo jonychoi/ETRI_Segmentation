@@ -1,5 +1,5 @@
 import os, sys, glob, cv2, argparse
-sys.path.append("/home/cvlab02/project/etri")
+#sys.path.append("/home/cvlab02/project/etri")
 from tqdm import tqdm
 import numpy as np
 import random
