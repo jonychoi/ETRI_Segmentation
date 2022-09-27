@@ -1,5 +1,16 @@
-CUDA_VISIBLE_DEVICES=1 python /home/cvlab02/project/etri/main.py \
---save_path "/media/dataset2/etri_result/etri_semi/" \
+#save_path: checkpoint path to save
+#weights: path of weight to start from
+#backbone: name of backbone
+#model_name: name of current version of model to save.
+#top_k: number of classes to use
+#merged: name of key for using pre-defined list of classes to merge ambiguous classes
+#source_dataset: name of source dataset to use
+#target_dataset: name of target dataset to use
+#source_root: the directory path of source dataset
+#target_root: the directory path of target dataset
+#pretrained: the path of weight of pre-trained dpt
+CUDA_VISIBLE_DEVICES=1 python ./main.py \
+--save_path "./checkpoints" \
 --weights "" \
 --backbone "dpt-hybrid" \
 --model_name "etri_semi" \
@@ -16,9 +27,9 @@ CUDA_VISIBLE_DEVICES=1 python /home/cvlab02/project/etri/main.py \
 --ema_decay 0.999 \
 --source_dataset 'etri' \
 --target_dataset 'DRAM' \
---source_root '/media/dataset2/etri' \
---target_root '/media/dataset2/DRAM_processed/' \
---pretrained "/media/dataset2/dpt_hybrid-ade20k-53898607.pt" \
+--source_root './datasets/etri' \
+--target_root './datasets/DRAM_processed/' \
+--pretrained "./dpt_hybrid-ade20k-53898607.pt" \
 --lam_style 1.0 \
 --pseudolabel_threshold 0.8 \
 --lam_randaug 0.8 \
