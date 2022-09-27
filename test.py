@@ -82,7 +82,7 @@ def run(args):
             )
             semi_semantic_segmentation = torch.argmax(semi_semantic_segmentation, dim=1).cpu().numpy()
             
-            segmentation_maps = label_mapper(y.cpu().numpy(), top_k)
+            segmentation_maps = label_mapper(y.cpu().numpy(), top_k, "etri_merge_top6")
             filename = os.path.join(save_dir, img_name+".png")
 
 
@@ -110,12 +110,12 @@ def run(args):
                     ax3.imshow(semi)
                     ax3.axis("off")
 
-                    filename = os.path.join(
-                        save_dir, os.path.splitext(os.path.basename(img_name))[0]
-                    )
+                    # filename = os.path.join(
+                    #     save_dir, os.path.splitext(os.path.basename(img_name))[0]
+                    # )
 
-                    plt.savefig(filename, dpi = 800)
-                    plt.close()
+                    # plt.savefig(filename, dpi = 800)
+                    # plt.close()
 
             evaluator.add_batch(segmentation_maps, semi_semantic_segmentation)
 
