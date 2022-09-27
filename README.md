@@ -6,6 +6,10 @@ This repository is for private usage. 2022 Computer Vision Lab @ Korea Universit
 
 ![alt text](./utils/framework.png)
 
+제일 위의 브랜치는 source dataset을 이용하는 부분으로 source dataset은 supervision이 있는 데이터셋이 있는 셋팅입니다. supervised branch는 supervision이 있는 데이터 셋으로 supervised learning을 하는 부분을 의미합니다.
+
+그 밑의 branch는  semi-supervised learning을 위한 branch이며, 해당 branch에 사용되는 target datsaset은 label이 없는 unlabled 셋팅입니다. 그렇기때문에 pseudo label을 통한 consistency regularization을 통해 성능을 끌어올리기 위해 학습됩니다.
+
 ---
 
 ### 0. Project Configuration
