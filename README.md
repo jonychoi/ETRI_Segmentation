@@ -32,6 +32,7 @@ mkdir ./checkpoints
 mkdir ./dataset
 ```
 You can download DRAM dataset from this link: [DRAM download](https://faculty.runi.ac.il/arik/site/artseg/DRAM_processed.zip)
+
 You can daonload the DPT checkpoint and final checkpoint to test our framework from this link: [Checkpoint download](https://drive.google.com/drive/folders/1Ki7FCQGUOy_CNJzckpkZagLENrvAWlHV?usp=sharing)
 
 Please put the **ETRI/DRAM dataset and checkpoints to the following "0. Project Configuration."**
