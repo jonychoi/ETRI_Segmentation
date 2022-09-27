@@ -2,6 +2,10 @@
 ### Semantic Segmentation for Arts - ETRI Project
 This repository is for private usage. 2022 Computer Vision Lab @ Korea University.
 
+### Network Configuration
+
+![alt text](./images/framework.png)
+
 ---
 
 ### 0. Project Configuration
