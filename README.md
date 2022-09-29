@@ -1,14 +1,18 @@
 # ETRI_segmentation
-### Semantic Segmentation for Arts - ETRI Project
+## Semantic Segmentation for Arts - ETRI Project
 This repository is for private usage. 2022 Computer Vision Lab @ Korea University.
 
-### Network Configuration
+Official Implementation for Semantic Segmentation for Art Domain with Semi-Supervised Learning.
 
-![alt text](./utils/framework.png)
+This project is done under CVLAB, Dept. of Computer Science and Engineering @ Korea University funded under ETRI (Electronics and Telecommunication Research Institution).
 
-제일 위의 브랜치는 source dataset을 이용하는 부분으로 source dataset은 supervision이 있는 데이터셋이 있는 셋팅입니다. supervised branch는 supervision이 있는 데이터 셋으로 supervised learning을 하는 부분을 의미합니다.
+### Architecture Overview
 
-그 밑의 branch는  semi-supervised learning을 위한 branch이며, 해당 branch에 사용되는 target datsaset은 label이 없는 unlabled 셋팅입니다. 그렇기때문에 pseudo label을 통한 consistency regularization을 통해 성능을 끌어올리기 위해 학습됩니다.
+![alt text](./etri.png)
+
+Upon branch is for supervised learning where the gt label exists corresponding to labeled-art-images or labeled-real-image.
+
+Two branch for unsupervised learning the weak branch and the strong branch which are for generating pseudo label and perturbated image prediction respectively, leverages performance for semantic segmentation.
 
 ---
 
